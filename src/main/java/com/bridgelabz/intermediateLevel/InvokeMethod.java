@@ -1,6 +1,7 @@
 package com.bridgelabz.intermediateLevel;
 
 import java.lang.reflect.Method;
+import java.util.Scanner;
 
 class MathOperations {
     public int add(int a, int b) {
@@ -20,17 +21,26 @@ public class InvokeMethod {
         Class<?> cls = mop.getClass();
         System.out.println("Class Name: " + cls.getName());
 
-        Method method1 = cls.getMethod("add", int.class, int.class);
-        int addResult = (int) method1.invoke(mop,5, 10);
-        System.out.println("Addition result: " + addResult);
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter the method name: ");
+        String methodName = sc.nextLine();
 
-        Method method2 = cls.getMethod("subtract", int.class, int.class);
-        int subResult = (int) method2.invoke(mop,5, 10);
-        System.out.println("Subtraction result: " + subResult);
+        System.out.print("Enter the 1st number: ");
+        int a = sc.nextInt();
+        System.out.print("Enter the 2nd number: ");
+        int b = sc.nextInt();
 
-        Method method3 = cls.getMethod("multiply", int.class, int.class);
-        int multiplyResult = (int) method3.invoke(mop, 5, 10);
-        System.out.println("Multiplication result: " + multiplyResult);
+        Method method = cls.getMethod(methodName, int.class, int.class);
+        int result = (int) method.invoke(mop,a, b);
+        System.out.println(method.getName() + " result: " + result);
+
+//        Method method2 = cls.getMethod("subtract", int.class, int.class);
+//        int subResult = (int) method2.invoke(mop,5, 10);
+//        System.out.println("Subtraction result: " + subResult);
+//
+//        Method method3 = cls.getMethod("multiply", int.class, int.class);
+//        int multiplyResult = (int) method3.invoke(mop, 5, 10);
+//        System.out.println("Multiplication result: " + multiplyResult);
 
     }
 }
